@@ -1,0 +1,63 @@
+CREATE TABLE CLERK (
+    ID INT,
+    STAFF_NM TEXT,
+    DEP_NM TEXT,
+    GENDER CHAR(1),
+    BIRTH_DT DATE,
+    EMP_FLAG CHAR(1)
+);
+
+CREATE TABLE CLERK2 (
+    ID INT PRIMARY KEY,
+    STAFF_NM VARCHAR(50),
+    DEP_NM VARCHAR(50),
+    GENDER CHAR(1),
+    BIRTH_DT VARCHAR(20), -- You may want to process this as a string due to the non-standard date format.
+    EMP_FLAG CHAR(1) -- This could be BOOLEAN if it's meant to represent a true/false value.
+);
+
+CREATE TABLE PERF (
+    CUST_ID INT PRIMARY KEY,
+    CUST_NM VARCHAR(50),
+    CUST_BIRTH VARCHAR(20), -- Same as BIRTH_DT in the clerk table, you might want to process the dates.
+    VISIT_CNT INT,
+    SALES_AMT MONEY, -- Assuming this represents currency, but you'll need to remove commas during import.
+    SALES_CNT INT
+);
+
+CREATE TABLE emp (
+    ID INT PRIMARY KEY,
+    POSITION VARCHAR(50),
+    PARTY_NM VARCHAR(100),
+    MANAGER_ID INT,
+    TEAM_NM VARCHAR(100),
+    GRADE INT
+);
+
+CREATE TABLE card_tran_201311 (
+    CMF INT,
+    PARTY_NMSEG VARCHAR(100),
+    SEG VARCHAR(50),
+    PIF_AMT MONEY, -- Assuming this represents currency; you'll need to remove commas during import.
+    INST_AMT MONEY, -- Same assumption as PIF_AMT.
+    OVRS_AMT MONEY, -- Same assumption as PIF_AMT.
+    CASH_AMT MONEY -- Same assumption as PIF_AMT.
+);
+
+CREATE TABLE ins_info (
+    ID INT,
+    CNRT_NO BIGINT,
+    CNRT_DT DATE, -- Assuming the format is consistent and is in YYYY.MM.DD format.
+    CNRT_CD INT,
+    PRDT_NM VARCHAR(100),
+    CNCL_DT DATE, -- Assuming the format is consistent and is in YYYY.MM.DD format; will need to handle '?' for nulls.
+    CNRT_AMT MONEY -- Assuming this represents currency; you'll need to remove commas during import.
+);
+
+CREATE TABLE purchase_tran (
+    ID INT,
+    PURCHASE_AMT MONEY, -- Assuming this represents currency; you'll need to remove commas during import.
+    PURCHASE_CNT INT,
+    LAST_AMT MONEY, -- Assuming this represents currency; you'll need to remove commas during import.
+    LAST_CNT INT
+);
